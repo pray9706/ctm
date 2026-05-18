@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Portal | Civic Tech Moncton</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 核心修复：锁定视口并实现完美居中 */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* 禁止全身滚动 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 保持您要求的原始背景设计 */
+        .bg-moncton-tech {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1B263B 100%);
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 限制卡片尺寸并消除内部溢出 */
+        .main-card {
+            height: 85vh;
+            max-height: 720px;
+            width: 90%;
+            max-width: 1100px;
+            overflow: hidden; /* 核心修复：消除竖向滚动条 */
+        }
+
+        /* 针对小屏幕笔记本的缩放优化 */
+        @media (max-height: 768px) {
+            .main-card {
+                transform: scale(0.9);
+                transform-origin: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-moncton-tech">
+
+    <div class="absolute top-6 right-8 z-50">
+        <button class="text-white bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-xs hover:bg-black/60 transition">
+            English / Français
+        </button>
+    </div>
+
+    <div class="main-card flex flex-col md:flex-row bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10">
+        
+        <div class="hidden md:flex flex-col justify-center p-12 w-1/2 text-white bg-blue-900/20 border-r border-white/5">
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-8">
+				<img src="img\CTM_Logo.png" 
+					 alt="Civic Tech Moncton Logo" 
+					 class="h-10 w-auto object-contain">
+				
+				
+			</div>
+                
+                <h1 class="text-4xl font-extrabold leading-tight">Your Skills.<br>Real Community Impact.</h1>
+                <p class="mt-4 text-blue-100/80 text-lg">Join a network of coders, designers, and thinkers solving Greater Moncton's challenges together.</p>
+            </div>
+            
+            <div class="relative mt-4">
+                <img src="img\Reg-01.png" 
+				 alt="Civic Tech Moncton Tech Illustration" 
+				 class="w-full h-52 object-cover rounded-2xl border border-white/20">
+            </div>
+        </div>
+
+        <div class="bg-white w-full md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-gray-900 leading-none">Create Account</h2>
+                <p class="text-gray-500 text-sm mt-3">Step 1 of 3: Establishing your digital presence.</p>
+            </div>
+
+            <form action="#" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition text-sm" placeholder="e.g. Rui Pan">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Email Address</label>
+                    <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition text-sm" placeholder="you@example.com">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Password</label>
+                    <input type="password" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition text-sm" placeholder="••••••••">
+                </div>
+
+                <div class="flex items-center gap-2 py-1">
+                    <input type="checkbox" required class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                    <p class="text-xs text-gray-500">
+                        I agree to the <a href="#" class="text-blue-600 font-medium hover:underline">Code of Conduct</a>.
+                    </p>
+                </div>
+
+                <div class="pt-2">
+					<a href="Reg-2.html" 
+					   class="block w-full bg-blue-600 text-white text-center font-bold py-3.5 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-100 transition-all active:scale-[0.98] cursor-pointer">
+						Continue to Skills & Talents
+					</a>
+				</div>
+            </form>
+
+            <div class="mt-8 text-center">
+                <p class="text-sm text-gray-600">
+                    Already have an account? <a href="#" class="text-blue-600 font-bold hover:underline">Log in here</a>
+                </p>
+                <p class="mt-4 text-[9px] text-gray-400 uppercase tracking-widest leading-tight">
+                    Existing Slack members: Please re-register for the portal.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
