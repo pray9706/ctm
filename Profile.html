@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard | Civic Tech Moncton</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* High-fidelity CSS Ribbon Badge Shape */
+        .ribbon-tag {
+            position: absolute;
+            top: 12px;
+            right: -4px;
+            padding: 4px 12px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: white;
+            border-radius: 4px 0 0 4px;
+            box-shadow: -2px 2px 4px rgba(0,0,0,0.15);
+        }
+        .ribbon-tag::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -4px;
+            border-top: 4px solid currentColor;
+            border-right: 4px solid transparent;
+            filter: brightness(0.6);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800">
+
+    <header class="w-full bg-white border-b border-slate-200 h-16 px-6 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+        <div class="flex items-center gap-3">
+            <img src="img/CTM_Logo.png" alt="Civic Tech Moncton Logo" class="h-8 object-contain">
+            <span class="font-bold text-xs uppercase tracking-widest text-slate-400 bg-slate-100 px-2 py-1 rounded">Member Portal</span>
+        </div>
+
+        <div class="relative">
+            <button id="userDropdownBtn" class="flex items-center gap-2 hover:bg-slate-50 p-1.5 rounded-xl transition outline-none">
+                <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                    RP
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+            
+            <div id="userDropdownMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50">
+                <div class="px-4 py-2 border-b border-slate-100">
+                    <p class="text-xs font-bold text-slate-900">Rui Pan</p>
+                    <p class="text-[10px] text-slate-400">rui.pan@nbcc.ca</p>
+                </div>
+                <a href="#" class="block px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 font-medium"><i class="fa-solid fa-user-gear mr-2 text-slate-400"></i> Edit Personal Info</a>
+                <a href="#" class="block px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 font-medium"><i class="fa-solid fa-key mr-2 text-slate-400"></i> Reset Password</a>
+                <a href="#" class="block px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 font-medium"><i class="fa-solid fa-circle-user mr-2 text-slate-400"></i> Change Avatar</a>
+                <a href="#" class="block px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 font-medium"><i class="fa-solid fa-sliders mr-2 text-slate-400"></i> Account Settings</a>
+                <div class="border-t border-slate-100 my-1"></div>
+                <a href="index.html" class="block px-4 py-2 text-xs text-red-600 hover:bg-red-50 font-bold"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-grow">
+        <aside class="w-64 bg-white border-r border-slate-200 p-4 space-y-1 flex-shrink-0 hidden md:block">
+            <button onclick="switchTab('my-skills')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition text-left bg-blue-50 text-blue-600" id="btn-my-skills">
+                <i class="fa-solid fa-brain-circuit text-base"></i> My Skills & Talents (4)
+            </button>
+            <button onclick="switchTab('my-projects')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition text-left text-slate-500 hover:bg-slate-50" id="btn-my-projects">
+                <i class="fa-solid fa-folder-heart text-base"></i> My Projects
+            </button>
+            <button onclick="switchTab('project-list')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition text-left text-slate-500 hover:bg-slate-50" id="btn-project-list">
+                <i class="fa-solid fa-folder-tree text-base"></i> Explore All Projects (4)
+            </button>
+            <button onclick="switchTab('team-members')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition text-left text-slate-500 hover:bg-slate-50" id="btn-team-members">
+                <i class="fa-solid fa-users-viewfinder text-base"></i> Community Roster (5)
+            </button>
+            <button onclick="switchTab('how-we-work')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition text-left text-slate-500 hover:bg-slate-50" id="btn-how-we-work">
+                <i class="fa-solid fa-book-bookmark text-base"></i> How We Work (Playbook)
+            </button>
+        </aside>
+
+        <main class="flex-grow p-6 md:p-8 max-w-5xl mx-auto w-full">
+
+            <section id="my-skills" class="tab-content active space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">My Skills & Talents</h2>
+                        <p class="text-xs text-slate-500 mt-1">Refine and manage your professional tech stack. Toggle public visibility for individual cards.</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="bg-blue-50 text-blue-600 font-bold text-[9px] uppercase px-2 py-0.5 rounded">Tech Skill</span>
+                                <h4 class="font-bold text-sm text-slate-900 mt-1">Tailwind CSS & Responsive Layouts</h4>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer" title="Toggle Public Visibility">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-8 h-4 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all"></div>
+                            </label>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs"><span class="text-slate-400">Proficiency:</span><span class="text-slate-700 font-semibold">Advanced</span></div>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full"><div class="bg-blue-600 h-1.5 rounded-full" style="width: 85%"></div></div>
+                            <p class="text-[11px] text-slate-500"><strong class="text-slate-700">Tools:</strong> Flexbox, Grid, Custom Config, PostCSS</p>
+                        </div>
+                        <button onclick="openEditSkillModal('Tailwind CSS', 'Advanced', '85%')" class="w-full text-center py-1.5 bg-slate-50 hover:bg-slate-100 text-[11px] font-bold text-slate-600 rounded-lg transition"><i class="fa-solid fa-pen-to-square mr-1"></i> Edit Details</button>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="bg-purple-50 text-purple-600 font-bold text-[9px] uppercase px-2 py-0.5 rounded">Design</span>
+                                <h4 class="font-bold text-sm text-slate-900 mt-1">UI/UX Figma Architecture</h4>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-8 h-4 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all"></div>
+                            </label>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs"><span class="text-slate-400">Proficiency:</span><span class="text-slate-700 font-semibold">Intermediate</span></div>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full"><div class="bg-purple-600 h-1.5 rounded-full" style="width: 60%"></div></div>
+                            <p class="text-[11px] text-slate-500"><strong class="text-slate-700">Tools:</strong> Auto-layout, Components, Prototyping</p>
+                        </div>
+                        <button onclick="openEditSkillModal('UI/UX Figma', 'Intermediate', '60%')" class="w-full text-center py-1.5 bg-slate-50 hover:bg-slate-100 text-[11px] font-bold text-slate-600 rounded-lg transition"><i class="fa-solid fa-pen-to-square mr-1"></i> Edit Details</button>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="bg-amber-50 text-amber-600 font-bold text-[9px] uppercase px-2 py-0.5 rounded">Management</span>
+                                <h4 class="font-bold text-sm text-slate-900 mt-1">Product Requirements (PRD) Mapping</h4>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-8 h-4 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all"></div>
+                            </label>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs"><span class="text-slate-400">Proficiency:</span><span class="text-slate-700 font-semibold">Expert</span></div>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full"><div class="bg-amber-500 h-1.5 rounded-full" style="width: 95%"></div></div>
+                            <p class="text-[11px] text-slate-500"><strong class="text-slate-700">Tools:</strong> Agile Frameworks, User Stories, Notion</p>
+                        </div>
+                        <button onclick="openEditSkillModal('PRD Mapping', 'Expert', '95%')" class="w-full text-center py-1.5 bg-slate-50 hover:bg-slate-100 text-[11px] font-bold text-slate-600 rounded-lg transition"><i class="fa-solid fa-pen-to-square mr-1"></i> Edit Details</button>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="bg-emerald-50 text-emerald-600 font-bold text-[9px] uppercase px-2 py-0.5 rounded">Data Science</span>
+                                <h4 class="font-bold text-sm text-slate-900 mt-1">Public Domain Data Cleaning</h4>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-8 h-4 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all"></div>
+                            </label>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs"><span class="text-slate-400">Proficiency:</span><span class="text-slate-700 font-semibold">Basic</span></div>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full"><div class="bg-emerald-500 h-1.5 rounded-full" style="width: 40%"></div></div>
+                            <p class="text-[11px] text-slate-500"><strong class="text-slate-700">Tools:</strong> Python (Pandas), OpenRefine, CSV Auditing</p>
+                        </div>
+                        <button onclick="openEditSkillModal('Data Cleaning', 'Basic', '40%')" class="w-full text-center py-1.5 bg-slate-50 hover:bg-slate-100 text-[11px] font-bold text-slate-600 rounded-lg transition"><i class="fa-solid fa-pen-to-square mr-1"></i> Edit Details</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="my-projects" class="tab-content space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">My Projects</h2>
+                        <p class="text-xs text-slate-500 mt-1">Project tasks that you are currently managing or actively participating in.</p>
+                    </div>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-circle-plus"></i> Create New Project
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between relative group">
+                        <div class="relative h-40 bg-slate-100">
+                            <img src="img/Reg-01.png" alt="Member Portal" class="w-full h-full object-cover">
+                            <span class="ribbon-tag bg-blue-600 text-blue-600">Active</span>
+                        </div>
+                        <div class="p-5 space-y-2 flex-grow">
+                            <h3 class="font-extrabold text-base text-slate-900">CTM Member Registration Portal</h3>
+                            <p class="text-xs text-slate-500 line-clamp-2">Building out end-to-end multi-step registration framework with digital ID biological safety checkpoints.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-slate-400">Role: Project Manager</span>
+                            <button class="text-xs font-bold text-blue-600 hover:text-blue-700">View Details &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="project-list" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Explore All Projects</h2>
+                    <p class="text-xs text-slate-500 mt-1">All projects launched within the CTM organization.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between relative">
+                        <div class="relative h-40 bg-slate-100">
+                            <img src="img/Reg-01.png" class="w-full h-full object-cover">
+                            <span class="ribbon-tag bg-blue-600 text-blue-600">Active</span>
+                        </div>
+                        <div class="p-5 space-y-2 flex-grow">
+                            <h3 class="font-extrabold text-base text-slate-900">CTM Member Registration Portal</h3>
+                            <p class="text-xs text-slate-500 line-clamp-2">Integrated digital verification pipelines scaling automated community member profile indexing safety rules.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-slate-400">Squad: 4 Developers</span>
+                            <button class="text-xs font-bold text-blue-600 hover:text-blue-700">View Details &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between relative">
+                        <div class="relative h-40 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover">
+                            <span class="ribbon-tag bg-blue-600 text-blue-600">Active</span>
+                        </div>
+                        <div class="p-5 space-y-2 flex-grow">
+                            <h3 class="font-extrabold text-base text-slate-900">Moncton Open-Data Civic Dashboard</h3>
+                            <p class="text-xs text-slate-500 line-clamp-2">Parsing API telemetry from municipal public transportation feeds to map visual frequency bottlenecks.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-slate-400">Squad: 3 Data Analysts</span>
+                            <button class="text-xs font-bold text-blue-600 hover:text-blue-700">View Details &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between relative">
+                        <div class="relative h-40 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover">
+                            <span class="ribbon-tag bg-blue-600 text-blue-600">Active</span>
+                        </div>
+                        <div class="p-5 space-y-2 flex-grow">
+                            <h3 class="font-extrabold text-base text-slate-900">Local Non-Profit Aid Resource Map</h3>
+                            <p class="text-xs text-slate-500 line-clamp-2">Geospatial directory mapping essential crisis aid, shelters, and mobile pantry vans around Westmorland county.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-slate-400">Squad: 2 Designers</span>
+                            <button class="text-xs font-bold text-blue-600 hover:text-blue-700">View Details &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between relative">
+                        <div class="relative h-40 bg-slate-100 grayscale">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover">
+                            <span class="ribbon-tag bg-slate-500 text-slate-500">Completed</span>
+                        </div>
+                        <div class="p-5 space-y-2 flex-grow">
+                            <h3 class="font-extrabold text-base text-slate-900">Greater Moncton Tech Audit</h3>
+                            <p class="text-xs text-slate-500 line-clamp-2">Evaluated hardware infrastructure and tooling stack gaps across 12 civic NGO agencies.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-slate-400">Released: April 2026</span>
+                            <button class="text-xs font-bold text-slate-600 hover:text-blue-700">View Blueprint &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="team-members" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Community Roster</h2>
+                    <p class="text-xs text-slate-500 mt-1">Core organizational partners and members who have authorized their profiles to be publicly visible.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:border-blue-300 transition">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" class="w-16 h-16 rounded-full object-cover mx-auto ring-2 ring-slate-100">
+                        <div><h4 class="font-bold text-sm text-slate-900">Sarah Jenkins</h4><p class="text-[10px] text-slate-400 font-medium">Lead UI/UX Designer</p></div>
+                        <div class="flex flex-wrap gap-1 justify-center"><span class="text-[8px] font-bold bg-purple-50 text-purple-600 px-1.5 py-0.5 rounded">Figma</span><span class="text-[8px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">Design Ops</span></div>
+                        <button class="w-full py-1.5 bg-slate-50 text-[11px] font-bold text-blue-600 rounded-lg">View Details</button>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:border-blue-300 transition">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" class="w-16 h-16 rounded-full object-cover mx-auto ring-2 ring-slate-100">
+                        <div><h4 class="font-bold text-sm text-slate-900">Alex Bouchard</h4><p class="text-[10px] text-slate-400 font-medium">Full Stack Developer</p></div>
+                        <div class="flex flex-wrap gap-1 justify-center"><span class="text-[8px] font-bold bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">React</span><span class="text-[8px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">Tailwind</span></div>
+                        <button class="w-full py-1.5 bg-slate-50 text-[11px] font-bold text-blue-600 rounded-lg">View Details</button>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 ring-2 ring-blue-500/30 text-center space-y-3 relative">
+                        <div class="w-16 h-16 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-xl mx-auto shadow-sm">RP</div>
+                        <div><h4 class="font-bold text-sm text-slate-900">Rui Pan (You)</h4><p class="text-[10px] text-slate-400 font-medium">Product & SysAdmin Lead</p></div>
+                        <div class="flex flex-wrap gap-1 justify-center"><span class="text-[8px] font-bold bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded">Agile</span><span class="text-[8px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">Azure</span></div>
+                        <button class="w-full py-1.5 bg-blue-50 text-[11px] font-bold text-blue-600 rounded-lg">Own Profile</button>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:border-blue-300 transition">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" class="w-16 h-16 rounded-full object-cover mx-auto ring-2 ring-slate-100">
+                        <div><h4 class="font-bold text-sm text-slate-900">Emily Vance</h4><p class="text-[10px] text-slate-400 font-medium">Data Scientist</p></div>
+                        <div class="flex flex-wrap gap-1 justify-center"><span class="text-[8px] font-bold bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded">Python</span><span class="text-[8px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">GIS Mapping</span></div>
+                        <button class="w-full py-1.5 bg-slate-50 text-[11px] font-bold text-blue-600 rounded-lg">View Details</button>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:border-blue-300 transition">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" class="w-16 h-16 rounded-full object-cover mx-auto ring-2 ring-slate-100">
+                        <div><h4 class="font-bold text-sm text-slate-900">Marcus Roy</h4><p class="text-[10px] text-slate-400 font-medium">Public Policy Specialist</p></div>
+                        <div class="flex flex-wrap gap-1 justify-center"><span class="text-[8px] font-bold bg-red-50 text-red-600 px-1.5 py-0.5 rounded">Civic Tech</span><span class="text-[8px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">Advocacy</span></div>
+                        <button class="w-full py-1.5 bg-slate-50 text-[11px] font-bold text-blue-600 rounded-lg">View Details</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-we-work" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">How We Work (Playbook)</h2>
+                    <p class="text-xs text-slate-500 mt-1">Understanding deployment sprint cadences and core organization tool stacks.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="space-y-2">
+                        <h3 class="font-bold text-base text-slate-900"><i class="fa-solid fa-rocket text-blue-500 mr-2"></i> Project Roadmap Execution</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Every civic transformation module starts inside our core ideation panel. Members draft a Product Requirements Document (PRD), map civic alignment metrics, and post an active talent scouting prompt to the community board.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+                        <a href="https://slack.com" target="_blank" class="p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50 hover:border-slate-200 transition flex items-center gap-3">
+                            <i class="fa-brands fa-slack text-amber-500 text-xl"></i>
+                            <div><h4 class="font-bold text-xs text-slate-900">Community Slack</h4><p class="text-[10px] text-slate-400">Daily sync channels</p></div>
+                        </a>
+                        <a href="https://figma.com" target="_blank" class="p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50 hover:border-slate-200 transition flex items-center gap-3">
+                            <i class="fa-brands fa-figma text-purple-500 text-xl"></i>
+                            <div><h4 class="font-bold text-xs text-slate-900">Figma Canvases</h4><p class="text-[10px] text-slate-400">UI/UX layouts</p></div>
+                        </a>
+                        <a href="https://trello.com" target="_blank" class="p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50 hover:border-slate-200 transition flex items-center gap-3">
+                            <i class="fa-brands fa-trello text-blue-500 text-xl"></i>
+                            <div><h4 class="font-bold text-xs text-slate-900">Trello Sprint Boards</h4><p class="text-[10px] text-slate-400">Task ticket pipeline</p></div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="editSkillModal" class="hidden fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 border border-slate-100 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150">
+            <div>
+                <h3 id="modalSkillName" class="font-extrabold text-base text-slate-900">Edit Skill</h3>
+                <p class="text-slate-400 text-[11px] mt-0.5">Update parameters for this specific qualification node.</p>
+            </div>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1">Proficiency Band</label>
+                    <select id="modalSkillLevel" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs font-medium outline-none">
+                        <option>Basic</option><option>Intermediate</option><option>Advanced</option><option>Expert</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1">Core Technical Frameworks</label>
+                    <input type="text" id="modalSkillTools" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs outline-none" placeholder="e.g. Tool A, Tool B, Tool C">
+                </div>
+            </div>
+            <div class="flex items-center justify-end gap-2 pt-2 text-xs font-bold">
+                <button onclick="closeEditSkillModal()" class="px-4 py-2 text-slate-500 hover:bg-slate-50 rounded-lg">Cancel</button>
+                <button onclick="closeEditSkillModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-sm">Apply Tweak</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dropdown Menu Toggle Switcher
+        const dropdownBtn = document.getElementById('userDropdownBtn');
+        const dropdownMenu = document.getElementById('userDropdownMenu');
+        dropdownBtn.addEventListener('click', (e) => { e.stopPropagation(); dropdownMenu.classList.toggle('hidden'); });
+        document.addEventListener('click', () => { dropdownMenu.classList.add('hidden'); });
+
+        // Tab Switching Engine
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-50', 'text-blue-600');
+                btn.classList.add('text-slate-500', 'hover:bg-slate-50');
+            });
+            document.getElementById(tabId).classList.add('active');
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.remove('text-slate-500', 'hover:bg-slate-50');
+            activeBtn.classList.add('bg-blue-50', 'text-blue-600');
+        }
+
+        // Skill Edit Modal Callbacks
+        const skillModal = document.getElementById('editSkillModal');
+        function openEditSkillModal(name, level, progress) {
+            document.getElementById('modalSkillName').innerText = `Modify Configuration: ${name}`;
+            document.getElementById('modalSkillLevel').value = level;
+            skillModal.classList.remove('hidden');
+        }
+        function closeEditSkillModal() {
+            skillModal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
