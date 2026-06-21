@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Registration - Step 1 | Civic Tech Moncton</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
@@ -35,6 +35,7 @@
             </div>
 
             <form action="Reg-2.html" class="space-y-6">
+                <!-- 模块一：基本账户信息 -->
                 <div class="space-y-4">
                     <h3 class="text-xs font-bold text-blue-600 uppercase tracking-wider border-b border-slate-100 pb-2">Required Information</h3>
                     
@@ -42,36 +43,128 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Full Name *</label>
                             <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. Rui Pan">
+                            <!-- 修改点 1：增加法定身份信息提示小字 -->
+                            <p class="text-[11px] text-slate-400 mt-1"><i class="fa-solid fa-circle-info mr-1"></i>Please enter your legal name as shown on your Government ID (Driver's License, Passport, etc.) for Step 2 verification.</p>
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Email Address *</label>
                             <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="you@example.com">
+                            <!-- 修改点 2：提示未来作为登录账号 -->
+                            <p class="text-[11px] text-slate-400 mt-1"><i class="fa-solid fa-user mr-1"></i>This email will be used as your login account username.</p>
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Core Skills (Tech or Non-Tech) *</label>
-                        <textarea required rows="3" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. Frontend Dev (React), UX Design, Project Management, Copywriting, Community Outreach..."></textarea>
+                    <!-- 修改点 3：新增密码与确认密码字段 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Password *</label>
+                            <input type="password" required minlength="6" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="At least 6 characters">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Confirm Password *</label>
+                            <input type="password" required minlength="6" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="Repeat your password">
+                        </div>
+                    </div>
+
+                    <!-- 修改点 4：将原本粗放的大 textarea Skills 改为结构化的多选标签组 -->
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Core Skills (Select all that apply) *</label>
+                        
+                        <div class="space-y-3 p-4 bg-slate-50/60 rounded-2xl border border-slate-200/60">
+                            <!-- 技术类 -->
+                            <div>
+                                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">Tech & Development</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="frontend" class="rounded text-blue-600 focus:ring-blue-500"> Frontend Dev
+                                    </label>
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="backend" class="rounded text-blue-600 focus:ring-blue-500"> Backend Dev
+                                    </label>
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="cloud-infra" class="rounded text-blue-600 focus:ring-blue-500"> Cloud & Infra
+                                    </label>
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="data-analytics" class="rounded text-blue-600 focus:ring-blue-500"> Data Analytics
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 设计类 -->
+                            <div class="pt-1">
+                                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">Design</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="ui-ux" class="rounded text-blue-600 focus:ring-blue-500"> UI/UX Design
+                                    </label>
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="graphic-design" class="rounded text-blue-600 focus:ring-blue-500"> Graphic Design
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 管理与运营类 -->
+                            <div class="pt-1">
+                                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">Management & Outreach</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="project-mgmt" class="rounded text-blue-600 focus:ring-blue-500"> Project Management
+                                    </label>
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="copywriting" class="rounded text-blue-600 focus:ring-blue-500"> Copywriting
+                                    </label>
+                                    <label class="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500 transition">
+                                        <input type="checkbox" name="skills" value="community" class="rounded text-blue-600 focus:ring-blue-500"> Community Outreach
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 灵活输入兜底 -->
+                            <div class="pt-2 border-t border-slate-200/60">
+                                <input type="text" class="w-full px-3 py-2 bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-xs transition" placeholder="Other specific skills? (e.g. Cybersecurity, QA Testing, separated by commas)">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <!-- 模块二：选填背景信息 -->
                 <div class="space-y-4 pt-4">
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-2">Optional Information</h3>
                     
+                    <!-- 修改点 5：对教育背景进行精细拆分（学校与学位） -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Educational Background</label>
-                            <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="College/University, Degree">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">School / University</label>
+                            <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. NBCC, Mount Allison">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Current Employment / Industry</label>
-                            <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="Current role or field of work">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Degree / Program</label>
+                            <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. IT Cloud Administration, Bachelor of Science">
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Skills Certification Link or Details</label>
-                        <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. AWS Certified, PMP, GitHub Profile Link">
+                    <!-- 修改点 6：对工作背景进行精细拆分（公司与职位） -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Current Employer / Organization</label>
+                            <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. Self-Employed, Tech Corp">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Job Title / Industry Field</label>
+                            <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. Product Manager, Logistics">
+                        </div>
+                    </div>
+
+                    <!-- 修改点 7：保留轻量证书与领英提示，避免强制上传文件阻断注册流 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">LinkedIn Profile Link</label>
+                            <input type="url" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Certifications / Portfolio Link</label>
+                            <input type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="e.g. AZ-104, PMP, GitHub Link">
+                        </div>
                     </div>
                 </div>
 
