@@ -5,22 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Civic Tech Moncton | Empowering Moncton Through Volunteering</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* 3. 确保整个页面最底层背景及延伸部分为纯白 */
             background-color: #ffffff;
             color: #1e293b;
         }
         .font-lato {
             font-family: 'Lato', sans-serif;
         }
+        /* 三大价值部分的半调或波浪式纹理背景延续 */
+        .tide-bg {
+            background-color: #f1f5f9;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-600 selection:text-white">
 
+    <!-- 导航栏 -->
+    <!-- 导航栏 -->
     <header class="w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-200/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -34,14 +41,20 @@
                 <a href="#" class="hover:text-blue-700 transition">Volunteer</a>
                 <a href="#" class="hover:text-blue-700 transition">Contact Us</a>
             </nav>
-            <div>
+            <!-- 右侧按钮组合区：完美对应 image_094266.png 红色矩形位置 -->
+            <div class="flex items-center gap-4">
                 <button class="text-xs font-semibold border border-blue-200 hover:bg-white/50 text-slate-700 px-4 py-2 rounded-full transition">
                     English / Français
                 </button>
+                <!-- 新增：Sign In 登录按钮 -->
+                <a href="login.html" class="text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full shadow-sm transition active:scale-95">
+                    <i class="fa-solid fa-right-to-bracket mr-1.5"></i>Sign In
+                </a>
             </div>
         </div>
     </header>
 
+    <!-- 英雄首屏区域 -->
     <section class="relative bg-gradient-to-b from-[#b9ddff] via-[#d6ecff]/40 to-white pt-16 pb-20 px-4 sm:px-6 lg:px-8 text-center">
         <div class="max-w-4xl mx-auto space-y-6">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1e3a8a] tracking-tight leading-none">
@@ -52,11 +65,10 @@
             </p>
             
             <div class="relative max-w-3xl mx-auto mt-10 rounded-2xl overflow-hidden shadow-2xl border border-blue-200/30 bg-slate-900 aspect-video group">
-                <img src="img/Reg-01.png" alt="Community Interaction Showcase" class="w-full h-full object-cover opacity-85 group-hover:scale-102 transition duration-700">
-                <div class="absolute inset-0 flex items-center justify-center bg-black/20">
-                    <button class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-xl hover:bg-blue-700 hover:scale-110 transition active:scale-95">
-                        <i class="fa-solid fa-play text-xl ml-1"></i>
-                    </button>
+                <!-- 修复点 1：将 <img> 更换为支持自动播放、静音、循环的 <video> 标签 -->
+                <video src="video/Homepage-banner.mp4" autoplay muted loop playsinline class="w-full h-full object-cover opacity-85 group-hover:scale-102 transition duration duration-700"></video>
+                <div class="absolute inset-0 flex items-center justify-center bg-black/10 pointer-events-none">
+                    <!-- 既然设置了自动播放，原有的巨大播放按钮改为可选浮层，或者调低突兀度 -->
                 </div>
                 <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-md font-medium">
                     Community Project Review - Moncton, NB
@@ -65,6 +77,7 @@
         </div>
     </section>
 
+    <!-- 志愿者团队加入区域 -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
         <div class="text-center mb-12">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Volunteer with us</h2>
@@ -73,7 +86,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100">
-                <img src="img/Reg-01.png" alt="Collaborative Workshop" class="w-full h-64 object-cover">
+                <img src="img/Shannon.jpg" alt="Collaborative Workshop" class="w-full h-64 object-cover">
             </div>
             <div class="space-y-5">
                 <h3 class="text-xl font-bold text-slate-900">Become a Civic Tech member</h3>
@@ -89,13 +102,14 @@
         </div>
     </section>
 
+    <!-- 运营介绍区域 1 -->
     <section class="bg-white py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-100">
         <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-12">
+            <div class="text-center mb-16">
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Welcome to Civic Tech Moncton</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
                 <div class="space-y-6 order-2 md:order-1">
                     <div class="space-y-2">
                         <h4 class="text-xs font-bold text-blue-600 uppercase tracking-widest">About Our Chapter</h4>
@@ -104,25 +118,147 @@
                     <p class="text-slate-600 text-sm leading-relaxed font-lato">
                         Our chapter brings together diverse talent pools to execute civic hacking sprints. We map technology problems discovered in daily municipal environments and craft open solutions that remain accessible to all citizens forever.
                     </p>
-                    <button class="text-sm font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 group">
-                        Learn more about our roadmap <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    <button class="text-sm font-bold bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition flex items-center gap-1 group">
+                        Learn more <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
-                <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 order-1 md:order-2 bg-white p-2">
-                    <div class="bg-slate-100 rounded-xl h-56 w-full flex items-center justify-center text-slate-400 font-medium text-xs italic">
-                        [Moncton Presentation Video Player Placeholder]
+                <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 order-1 md:order-2 bg-white p-2 relative group aspect-video">
+                    <!-- 修复点 2：更替为标准的 <video> 标签，支持点击或悬停控制播放 -->
+                    <video src="video/Homepage-Coordinator.mp4" controls class="w-full h-full object-cover rounded-xl"></video>
+                </div>
+            </div>
+
+            <!-- 运营介绍区域 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-white p-2 relative group aspect-video">
+                    <!-- 修复点 3：更替为标准的 <video> 标签，并加上控制条 -->
+                    <video src="video/Homepage-Meet volunteers.mp4" controls class="w-full h-full object-cover rounded-xl"></video>
+                </div>
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-blue-600 uppercase tracking-widest">Our Infrastructure</h4>
+                        <h3 class="text-xl font-bold text-slate-900">Real-world System Deployment</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed font-lato">
+                        We actively bridge the gap between administrative requirements and technical deployment. Volunteers manage containerized applications, local staging nodes, and responsive styling to maintain premium uptime for community tools.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心驱动力三卡片区域 -->
+    <section class="tide-bg py-20 px-4 sm:px-6 lg:px-8 border-t border-b border-slate-200/50 relative">
+        <div class="max-w-5xl mx-auto text-center space-y-4 mb-12">
+            <h4 class="text-xs font-bold text-blue-600 uppercase tracking-widest">What Drives Us</h4>
+            <h2 class="text-3xl sm:text-4xl font-black text-[#1e3a8a] tracking-tight">The tide returns. <br>So do we.</h2>
+            <p class="text-xs text-blue-900/60 max-w-xl mx-auto font-medium">Delivering open digital tools to promote automated community dashboard frameworks.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <!-- 卡片 1 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-3">
+                <h4 class="font-bold text-sm text-[#1e3a8a] uppercase tracking-wider border-b border-slate-100 pb-2">Collaboration</h4>
+                <p class="text-xs text-slate-600 font-lato leading-relaxed">
+                    Working hand-in-hand with civic entities, non-profit groups, and localized chapters to maintain clear data transparency targets.
+                </p>
+            </div>
+            <!-- 卡片 2 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-3">
+                <h4 class="font-bold text-sm text-[#1e3a8a] uppercase tracking-wider border-b border-slate-100 pb-2">Open Innovation</h4>
+                <p class="text-xs text-slate-600 font-lato leading-relaxed">
+                    Building custom config structures under public domain architectures, ensuring software remains unblocked and reusable forever.
+                </p>
+            </div>
+            <!-- 卡片 3 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-3">
+                <h4 class="font-bold text-sm text-[#1e3a8a] uppercase tracking-wider border-b border-slate-100 pb-2">Impact</h4>
+                <p class="text-xs text-slate-600 font-lato leading-relaxed">
+                    Deploying responsive assets that resolve municipal bottlenecks, directly improving tech access across Westmorland county.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 动态活动区域 (Upcoming Events) -->
+    <!-- 修复点 4：扩展 max-w-3xl 至 max-w-4xl 增强中台厚度 -->
+    <section class="bg-white py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <!-- 放大标题与边框间距 -->
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Upcoming Events & more!</h2>
+                <div class="w-12 h-1 bg-blue-600 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- 活动行 1 -->
+                <div class="flex items-center gap-6 p-5 rounded-2xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                    <!-- 图片从 w-20 h-14 放大到 w-32 h-20 -->
+                    <img src="img/event-1.jpg" alt="Event Thumbnail" class="w-32 h-20 object-cover rounded-xl bg-slate-100 flex-shrink-0 shadow-sm">
+                    <div>
+                        <!-- 字体提升到 text-sm 与 text-base，行高优化 -->
+                        <h4 class="font-extrabold text-base text-blue-600 hover:text-blue-800 hover:underline cursor-pointer transition">March 17, 2026: Open-Data Analytics Sync</h4>
+                        <p class="text-xs text-slate-400 mt-1.5 font-medium"><i class="fa-regular fa-clock mr-1"></i> 6:30 PM - 8:30 PM AT</p>
+                    </div>
+                </div>
+                <!-- 活动行 2 -->
+                <div class="flex items-center gap-6 p-5 rounded-2xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                    <img src="img/event-2.jpg" alt="Event Thumbnail" class="w-32 h-20 object-cover rounded-xl bg-slate-100 flex-shrink-0 shadow-sm">
+                    <div>
+                        <h4 class="font-extrabold text-base text-blue-600 hover:text-blue-800 hover:underline cursor-pointer transition">February 24, 2026: UI/UX Canvas Code Sprint</h4>
+                        <p class="text-xs text-slate-400 mt-1.5 font-medium"><i class="fa-regular fa-clock mr-1"></i> 6:30 PM - 8:30 PM AT</p>
+                    </div>
+                </div>
+                <!-- 活动行 3 -->
+                <div class="flex items-center gap-6 p-5 rounded-2xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                    <img src="img/event-3.jpg" alt="Event Thumbnail" class="w-32 h-20 object-cover rounded-xl bg-slate-100 flex-shrink-0 shadow-sm">
+                    <div>
+                        <h4 class="font-extrabold text-base text-slate-700 hover:text-blue-600 hover:underline cursor-pointer transition">View older posts & updates</h4>
+                        <p class="text-xs text-slate-400 mt-1.5 font-medium">Explore full archives</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-white py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-100">
-        <div class="max-w-5xl mx-auto text-center">
-            <h4 class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">What Drives Us</h4>
-            <h2 class="text-3xl font-black text-blue-950 tracking-tight">The tide returns. <br>So do we.</h2>
+    <!-- 底部呼吁加盟行动区 (CTA) -->
+    <section class="bg-white pb-20 pt-10 px-4 text-center">
+        <div class="max-w-md mx-auto space-y-4">
+            <h3 class="font-extrabold text-lg text-slate-900 tracking-tight">Ready to build something that matters?</h3>
+            <div>
+                <a href="Reg-1.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-6 py-3 rounded-full shadow-md transition">
+                    Register Now
+                </a>
+            </div>
         </div>
     </section>
+
+    <!-- 完美匹配的蓝色完整页脚 (Footer) -->
+    <footer class="bg-[#b9ddff] text-blue-950 py-12 px-4 sm:px-6 lg:px-8 border-t border-blue-300/30">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 border-b border-blue-900/10 pb-8 text-xs font-semibold">
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#" class="hover:text-blue-700 transition">About Us</a>
+                <a href="#" class="hover:text-blue-700 transition">Projects</a>
+                <a href="#" class="hover:text-blue-700 transition">Infrastructure</a>
+                <a href="#" class="hover:text-blue-700 transition">What Drives Us</a>
+                <a href="#" class="hover:text-blue-700 transition">Contact Us</a>
+            </div>
+            <div class="text-[#1e3a8a] font-bold text-sm tracking-wide">
+                CIVIC TECH MONCTON
+            </div>
+        </div>
+        <div class="max-w-5xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-blue-900/60 font-medium">
+            <p>&copy; 2026 Civic Tech Moncton. All rights reserved.</p>
+            <!-- 社交图标组 -->
+            <div class="flex items-center gap-4 text-base">
+                <a href="#" class="hover:text-blue-800 transition"><i class="fa-brands fa-slack"></i></a>
+                <a href="#" class="hover:text-blue-800 transition"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-blue-800 transition"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-blue-800 transition"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-blue-800 transition"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
