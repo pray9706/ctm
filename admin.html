@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Civic Tech Moncton</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&family=Lato:ital,wght=0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+    </style>
+</head>
+<body class="antialiased text-slate-800 min-h-screen flex">
+
+    <aside class="w-64 bg-[#1e3a8a] text-white flex flex-col justify-between sticky top-0 h-screen flex-shrink-0 shadow-xl z-20">
+        <div>
+            <div class="h-20 flex items-center px-6 border-b border-blue-900/40 gap-3">
+                <img src="img/CTM_Logo.png" alt="Logo" class="h-8 brightness-0 invert object-contain">
+                <div class="leading-none">
+                    <span class="text-xs font-black tracking-wider uppercase block text-blue-200">Civic Tech</span>
+                    <span class="text-[10px] font-bold tracking-widest uppercase block text-blue-300/70 mt-0.5">Moncton Admin</span>
+                </div>
+            </div>
+
+            <nav class="p-4 space-y-6 overflow-y-auto" style="max-height: calc(100vh - 160px);">
+                
+                <div class="space-y-1">
+                    <a href="#overview" class="flex items-center gap-3 bg-blue-700/50 text-white px-3 py-2 rounded-xl text-xs font-bold transition">
+                        <i class="fa-solid fa-chart-pie text-sm text-blue-300"></i> Dashboard Overview
+                    </a>
+                    <div class="pl-9 space-y-1 mt-1">
+                        <a href="#analytics" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Analytics Summary</a>
+                        <a href="#pending-actions" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1 flex items-center justify-between">
+                            Pending Actions <span class="bg-amber-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full">3</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex items-center gap-3 text-white px-3 py-1 text-xs font-bold">
+                        <i class="fa-solid fa-users text-sm text-blue-300"></i> Volunteer Hub
+                    </div>
+                    <div class="pl-9 space-y-1 mt-1">
+                        <a href="#review" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1 flex items-center justify-between">
+                            Application Review <span class="bg-blue-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full">2</span>
+                        </a>
+                        <a href="#roster" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Volunteer Roster</a>
+                        <a href="#roles" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Teams & Roles</a>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex items-center gap-3 text-white px-3 py-1 text-xs font-bold">
+                        <i class="fa-solid fa-calendar-days text-sm text-blue-300"></i> Events & Posts
+                    </div>
+                    <div class="pl-9 space-y-1 mt-1">
+                        <a href="#event-list" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Event List</a>
+                        <a href="#create-event" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1"><i class="fa-solid fa-plus text-[9px] mr-1"></i> Create New Event</a>
+                        <a href="#announcements" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Announcements</a>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex items-center gap-3 text-white px-3 py-1 text-xs font-bold">
+                        <i class="fa-solid fa-layer-group text-sm text-blue-300"></i> Projects & CMS
+                    </div>
+                    <div class="pl-9 space-y-1 mt-1">
+                        <a href="#media-cms" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Hero Media CMS</a>
+                        <a href="#copy-cms" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Section Copywriting</a>
+                        <a href="#portfolio" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Project Portfolio</a>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex items-center gap-3 text-white px-3 py-1 text-xs font-bold">
+                        <i class="fa-solid fa-sliders text-sm text-blue-300"></i> Infrastructure
+                    </div>
+                    <div class="pl-9 space-y-1 mt-1">
+                        <a href="#node-monitor" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Staging Node Monitor</a>
+                        <a href="#policy" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Policy & Documentation</a>
+                        <a href="#admin-settings" class="block text-[11px] font-medium text-blue-200/80 hover:text-white py-1">Admin Settings</a>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+
+        <div class="p-4 border-t border-blue-900/40 bg-blue-950/40">
+            <div class="flex items-center justify-between text-xs text-blue-200/70 font-medium">
+                <span>v1.0.0 Stable</span>
+                <a href="login.html" class="hover:text-red-400 transition flex items-center gap-1">
+                    <i class="fa-solid fa-power-off"></i> Sign Out
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="flex-grow flex flex-col min-w-0">
+        
+        <header class="h-20 bg-white border-b border-slate-200/80 px-6 md:px-8 flex items-center justify-between sticky top-0 z-10 shadow-sm shadow-slate-100/40">
+            <div class="relative w-64 hidden sm:block">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                <input type="text" placeholder="Quick search dashboard..." class="w-full bg-slate-50 border border-slate-200 pl-9 pr-4 py-2 rounded-xl text-xs outline-none focus:border-blue-500 focus:bg-white transition-all">
+            </div>
+            
+            <div class="flex items-center gap-6 ml-auto">
+                <a href="index.html" class="text-xs font-semibold text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-globe"></i> View Website
+                </a>
+                
+                <button class="relative text-slate-500 hover:text-slate-800 transition">
+                    <i class="fa-regular fa-bell text-sm"></i>
+                    <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-amber-500 text-[9px] font-bold text-white rounded-full flex items-center justify-center">3</span>
+                </button>
+
+                <div class="flex items-center gap-2.5 pl-4 border-l border-slate-200">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center shadow-md">
+                        M
+                    </div>
+                    <div class="text-left hidden md:block">
+                        <p class="text-xs font-bold text-slate-800 leading-none">Admin Lead</p>
+                        <p class="text-[10px] font-medium text-slate-400 mt-0.5">ctm.admin@civictech</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-6 md:p-8 space-y-8 flex-grow overflow-y-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="text-xl font-black text-slate-900 tracking-tight">Dashboard Overview</h1>
+                    <p class="text-xs text-slate-500 font-lato mt-0.5">Welcome back, Maintainer. Here is the operational state of your chapter today.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button class="bg-white border border-slate-200 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-semibold transition shadow-sm">Export Data</button>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-md shadow-blue-100">+ System Alert</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-slate-400">
+                        <span class="text-[11px] font-bold uppercase tracking-wider">Active Volunteers</span>
+                        <i class="fa-solid fa-user-check text-base text-blue-600"></i>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-2xl font-black text-slate-900">142</span>
+                        <span class="text-[10px] font-bold text-emerald-600 font-lato"><i class="fa-solid fa-arrow-up"></i> +8% this month</span>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-slate-400">
+                        <span class="text-[11px] font-bold uppercase tracking-wider">Pending Approvals</span>
+                        <i class="fa-solid fa-user-clock text-base text-amber-500"></i>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-2xl font-black text-slate-900">3</span>
+                        <span class="text-[10px] font-bold text-amber-500 font-lato">Requires Action</span>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-slate-400">
+                        <span class="text-[11px] font-bold uppercase tracking-wider">Staging Nodes</span>
+                        <i class="fa-solid fa-server text-base text-indigo-500"></i>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-2xl font-black text-slate-900">2 / 2</span>
+                        <span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">99.9% Uptime</span>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-slate-400">
+                        <span class="text-[11px] font-bold uppercase tracking-wider">Upcoming Events</span>
+                        <i class="fa-solid fa-calendar text-base text-pink-500"></i>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-2xl font-black text-slate-900">1</span>
+                        <span class="text-[10px] font-bold text-slate-400 font-lato">March 17 Analytics Sync</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm p-6 space-y-6 lg:col-span-2">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-900">Volunteer Roster & Skill Filters</h3>
+                            <p class="text-[11px] text-slate-400 font-lato mt-0.5">Filter, search, and verify core technical or management capacities.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold px-2 py-0.5 rounded-md cursor-pointer hover:bg-blue-100">All Tech</span>
+                            <span class="bg-slate-50 text-slate-600 border border-slate-200 text-[10px] font-bold px-2 py-0.5 rounded-md cursor-pointer hover:bg-slate-100">UI/UX Only</span>
+                            <span class="bg-slate-50 text-slate-600 border border-slate-200 text-[10px] font-bold px-2 py-0.5 rounded-md cursor-pointer hover:bg-slate-100">NBCC Alumni</span>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                                    <th class="pb-3 font-bold">Legal Name & Account</th>
+                                    <th class="pb-3 font-bold">Matched Skills</th>
+                                    <th class="pb-3 font-bold">Affiliation / Background</th>
+                                    <th class="pb-3 font-bold text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-xs">
+                                <tr>
+                                    <td class="py-3.5">
+                                        <div class="font-bold text-slate-900">Rui Pan</div>
+                                        <div class="text-[10px] text-slate-400 font-lato">rui.pan@example.com</div>
+                                    </td>
+                                    <td class="py-3.5">
+                                        <div class="flex flex-wrap gap-1">
+                                            <span class="bg-indigo-50 text-indigo-700 text-[9px] font-bold px-1.5 py-0.5 rounded">Cloud & Infra</span>
+                                            <span class="bg-blue-50 text-blue-700 text-[9px] font-bold px-1.5 py-0.5 rounded">Product Mgmt</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3.5">
+                                        <div class="font-medium text-slate-700">NBCC Student</div>
+                                        <div class="text-[10px] text-slate-400">IT Cloud Administration</div>
+                                    </td>
+                                    <td class="py-3.5 text-right">
+                                        <button class="text-blue-600 hover:text-blue-800 font-bold hover:underline">View Profile</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3.5">
+                                        <div class="font-bold text-slate-900">Jane Doe</div>
+                                        <div class="text-[10px] text-slate-400 font-lato">jane.doe@dev.org</div>
+                                    </td>
+                                    <td class="py-3.5">
+                                        <div class="flex flex-wrap gap-1">
+                                            <span class="bg-pink-50 text-pink-700 text-[9px] font-bold px-1.5 py-0.5 rounded">UI/UX Design</span>
+                                            <span class="bg-emerald-50 text-emerald-700 text-[9px] font-bold px-1.5 py-0.5 rounded">Frontend Dev</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3.5">
+                                        <div class="font-medium text-slate-700">Tech Corp</div>
+                                        <div class="text-[10px] text-slate-400">Senior Product Designer</div>
+                                    </td>
+                                    <td class="py-3.5 text-right">
+                                        <button class="text-blue-600 hover:text-blue-800 font-bold hover:underline">View Profile</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm p-6 space-y-4">
+                    <div class="border-b border-slate-100 pb-3">
+                        <h3 class="text-sm font-bold text-slate-900">Pending Review (Step 2 Complete)</h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Applicants waiting for legal identity confirmation.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-4 bg-slate-50/80 border border-slate-200/60 rounded-xl space-y-3">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-bold text-xs text-slate-900">Alex Johnston</h4>
+                                    <p class="text-[10px] text-slate-400 font-lato">Applied for Backend Dev Node</p>
+                                </div>
+                                <span class="bg-amber-100 text-amber-800 text-[9px] font-black px-1.5 py-0.5 rounded">ID Match 98%</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 font-lato">Submitted Passport scan via automated OCR pipeline.</p>
+                            <div class="flex gap-2 pt-1 border-t border-slate-200/60 text-[11px] font-bold">
+                                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-1.5 rounded-lg transition">Approve</button>
+                                <button class="w-full bg-white border border-slate-200 hover:bg-slate-100 text-slate-600 py-1.5 rounded-lg transition">Reject</button>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50/80 border border-slate-200/60 rounded-xl space-y-3">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-bold text-xs text-slate-900">Sarah Landry</h4>
+                                    <p class="text-[10px] text-slate-400 font-lato">Applied for Data Specialist</p>
+                                </div>
+                                <span class="bg-rose-100 text-rose-800 text-[9px] font-black px-1.5 py-0.5 rounded">Manual Check</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 font-lato">Driver's License image blurry. Requires administrator eye check.</p>
+                            <div class="flex gap-2 pt-1 border-t border-slate-200/60 text-[11px] font-bold">
+                                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-1.5 rounded-lg transition">Review ID</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="w-full text-center py-4 text-[11px] text-slate-400 bg-white border-t border-slate-200/60">
+            &copy; 2026 Civic Tech Moncton. Internal Admin Application Layer. All rights reserved.
+        </footer>
+
+    </div>
+
+</body>
+</html>
